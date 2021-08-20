@@ -1,0 +1,236 @@
+{
+  "metadata": {
+    "schemaVersion": "1.0",
+    "importType": "LEX",
+    "importFormat": "JSON"
+  },
+  "resource": {
+    "name": "help_desk_bot",
+    "version": "4",
+    "intents": [
+      {
+        "name": "help_desk_hello",
+        "version": "4",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "hi",
+          "hello",
+          "hey",
+          "hi there",
+          "hello there"
+        ],
+        "slots": []
+      },
+      {
+        "name": "help_desk_check_appointment",
+        "version": "15",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "what time is my appointment today",
+          "when is my appointment",
+          "what time are we meeting again",
+          "when was I supposed to come in",
+          "when am i stopping by",
+          "when am i coming in",
+          "do I have an appointment"
+        ],
+        "slots": []
+      },
+      {
+        "name": "help_desk_make_appointment",
+        "version": "27",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Can I make an appointment",
+          "Can I come in at {time}",
+          "I have a {problem}",
+          "My {problem}",
+          "Can you fix a {problem}",
+          "Can we fix my {problem} at {time}",
+          "Can I come in to fix my {problem}",
+          "Can I stop by around {time} to fix my {problem}",
+          "Can I get my {problem} fixed"
+        ],
+        "slots": [
+          {
+            "sampleUtterances": [],
+            "slotType": "AMAZON.FOUR_DIGIT_NUMBER",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "For verification purposes, can I get the last four digits of your employee ID?"
+                }
+              ],
+              "maxAttempts": 2
+            },
+            "priority": 3,
+            "name": "emp_id"
+          },
+          {
+            "sampleUtterances": [
+              "my {problem}",
+              "I have a {problem}",
+              "I {problem}",
+              "my {problem} isn't working",
+              "my {problem} is broken"
+            ],
+            "slotType": "help_desk_problem",
+            "slotTypeVersion": "9",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "Sure, what is the nature of your problem?"
+                },
+                {
+                  "contentType": "PlainText",
+                  "content": "Yes, what is the issue you are having?"
+                },
+                {
+                  "contentType": "PlainText",
+                  "content": "Sure, what's the problem?"
+                }
+              ],
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\",\"genericAttachments\":[]}",
+              "maxAttempts": 2
+            },
+            "priority": 2,
+            "name": "problem"
+          },
+          {
+            "sampleUtterances": [
+              "how about at {time}",
+              "in {time}",
+              "let's say at {time}",
+              "{time} o'clock",
+              "around {time}"
+            ],
+            "slotType": "AMAZON.TIME",
+            "obfuscationSetting": "NONE",
+            "slotConstraint": "Required",
+            "valueElicitationPrompt": {
+              "messages": [
+                {
+                  "contentType": "PlainText",
+                  "content": "OK, we can help. What time would you like to come by?  You can say in 30 minutes, at 9am, noon, 2pm, etc."
+                }
+              ],
+              "responseCard": "{\"version\":1,\"contentType\":\"application/vnd.amazonaws.card.generic\"}",
+              "maxAttempts": 2
+            },
+            "priority": 1,
+            "name": "time"
+          }
+        ]
+      },
+      {
+        "name": "help_desk_goodbye",
+        "version": "7",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [
+          "Thanks",
+          "Thanks I am all set",
+          "OK thank you",
+          "See you then",
+          "Bye",
+          "Goodbye",
+          "OK thanks"
+        ],
+        "slots": []
+      },
+      {
+        "name": "help_desk_fallback",
+        "version": "2",
+        "fulfillmentActivity": {
+          "type": "ReturnIntent"
+        },
+        "sampleUtterances": [],
+        "slots": [],
+        "parentIntentSignature": "AMAZON.FallbackIntent"
+      }
+    ],
+    "slotTypes": [
+      {
+        "description": "Supported IT Help Desk problem categories",
+        "name": "help_desk_problem",
+        "version": "9",
+        "enumerationValues": [
+          {
+            "value": "laptop issue",
+            "synonyms": [
+              "dead laptop",
+              "can't boot my laptop",
+              "laptop won't start up",
+              "broken laptop",
+              "busted laptop"
+            ]
+          },
+          {
+            "value": "laptop screen issue",
+            "synonyms": [
+              "broken screen",
+              "bad laptop screen",
+              "laptop screen issue",
+              "problem with my laptop screen",
+              "screen",
+              "cracked screen",
+              "cracked laptop screen"
+            ]
+          },
+          {
+            "value": "laptop battery issue",
+            "synonyms": [
+              "dead laptop battery",
+              "battery problem",
+              "battery keeps dying",
+              "battery life is terrible",
+              "laptop battery issue",
+              "battery won't hold a charge",
+              "battery not charging"
+            ]
+          },
+          {
+            "value": "laptop audio issues",
+            "synonyms": [
+              "laptop speaker not working",
+              "can't hear my laptop speaker",
+              "sound not working",
+              "laptop sound problem",
+              "sound",
+              "speakers",
+              "laptop audio issue",
+              "laptop audio is broken"
+            ]
+          }
+        ],
+        "valueSelectionStrategy": "TOP_RESOLUTION"
+      }
+    ],
+    "voiceId": "Kendra",
+    "childDirected": false,
+    "locale": "en-US",
+    "idleSessionTTLInSeconds": 300,
+    "abortStatement": {
+      "messages": [
+        {
+          "contentType": "PlainText",
+          "content": "Sorry, I could not understand. Goodbye."
+        }
+      ]
+    },
+    "detectSentiment": false
+  }
+}
