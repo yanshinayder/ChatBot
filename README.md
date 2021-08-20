@@ -24,10 +24,25 @@
 * Amazon-WorkDocs-Drive
 * help-desk-faq
 
-Now let's go to kendra console and we'll add our FAQ.
-For this select add FAQ and choose browse S3 and select the help-desk-faq file.csv.
-For IAM function we will create a basic function to give access to kendra in our S3.
-Choose Sync run schedule we will select Run on Demand to give you access to it whenever requested.
-After clicking Sync Now.
+### Now let's go to kendra console and we'll add our FAQ.
+### For this select add FAQ and choose browse S3 and select the help-desk-faq file.csv.
+### For IAM function we will create a basic function to give access to kendra in our S3.
+### Choose Sync run schedule we will select Run on Demand to give you access to it whenever requested.
+### After clicking Sync Now.
+### Now let's allow our Lambda function to see our Amazon Kendra.
+### Choose the IAM role listed under Role name.
+
+![Lambda](https://user-images.githubusercontent.com/78814110/130277894-913a168a-0dce-4c4c-a8d7-b64404ed3caa.jpg)
+
+### The last step will be to deploy on a channel, I'll use Slack, however it may be up to Facebook Messenger.
+### On the Amazon Lex console, choose Settings. You will need to publish a version of your bot to integrate it with Slack. 
+
+![add](https://user-images.githubusercontent.com/78814110/130278132-3a297948-9e2d-44f6-870b-46ebd8738f61.jpg)
+
+Once created and integrated, the Bot is ready to be stocked and used in our app.
+
+![slack](https://user-images.githubusercontent.com/78814110/130278207-1ca8ada8-8c93-448c-96fd-bcdc504c6d9b.jpg)
+
+
 
 
